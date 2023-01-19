@@ -1,4 +1,4 @@
-# chatGPT TERMINAL CLIENT (Powershell Version)
+# chatGPT POWERSHELL CLIENT
 
 A simple script to query ***one direct question / task*** to chatGPT via terminal.<br>
 It doesn't remember questions made previously like the normal web chat.<br> 
