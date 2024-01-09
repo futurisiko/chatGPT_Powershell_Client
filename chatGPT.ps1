@@ -119,7 +119,7 @@ Write-Host "`nAnswer:" -ForegroundColor green
 
 
 ### Other variables
-$model = "text-davinci-003"
+$model = "gpt-3.5-turbo"
 
 
 ### Build the query (JSON)
