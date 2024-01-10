@@ -13,11 +13,9 @@
 #              Default = 4000
 #              1000 tokens =~ 750 words
 #              Your prompt + max_tokens can't exceed the context lenght of the model.
-#              Normal models have a context lenght of 2048.
-#              New ones accept 4096.
 #
 # -temperature = defines the type of processing applied to answer.
-#                Default = 1.0
+#                Default = 0.7
 #
 #                - lower (e.g. 0.0 / 1.0):
 #                chatGPT will choose words with a higher probability of occurrence.
@@ -36,7 +34,7 @@
 param(
     [Parameter()][string]$questionparam,
     [Parameter()][switch]$helpparam,
-    [Parameter()]$temperatureparam = 1.0,
+    [Parameter()]$temperatureparam = 0.7,
     [Parameter()]$maxtokensparam = 4000
 )
 
@@ -72,7 +70,7 @@ function Help {
   Write-Host "`nOptions:"
   Write-Host "`n-temperature <NUMBER>:" -ForegroundColor green -NoNewLine
   Write-Host " set the temperature used."
-  Write-Host "     If not specified default value is 1.0."
+  Write-Host "     If not specified default value is 0.7."
   Write-Host "     Lower temperature (e.g. 0.0 / 1.0):"
   Write-Host "     chatGPT will choose words with a higher probability of occurrence."
   Write-Host "     Useful when we want to complete something with the most probable value/phrase/word."
@@ -84,7 +82,6 @@ function Help {
   Write-Host "     If not specified default value is 4000."
   Write-Host "     1000 tokens = 750 words."
   Write-Host "     Your prompt + max_tokens can't exceed the context lenght of the model."
-  Write-Host "     Normal models have a context lenght of 2048. New ones accept up to 4096."
   Write-Host "`n-help:" -ForegroundColor green -NoNewLine
   Write-Host " print this help."
   Write-Host "`nCya!"
@@ -133,7 +130,7 @@ $json = $payload | ConvertTo-Json
 
 
 ### Perform the query
-$response = Invoke-RestMethod -Uri 'https://api.openai.com/v1/completions' -Method POST -Body $json -Headers @{Authorization = "Bearer $TOKEN"} -ContentType 'application/json'
+$response = Invoke-RestMethod -Uri 'https://api.openai.com/v1/chat/completions' -Method POST -Body $json -Headers @{Authorization = "Bearer $TOKEN"} -ContentType 'application/json'
 
 
 ### Extract the response
