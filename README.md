@@ -14,13 +14,17 @@ https://github.com/futurisiko/chatGPT_Terminal_Client
 Help:
 ```
 .\chatGPT.ps1 -help
-Usage: chatGTP 'Question in single quotes' [Options]                                    
-Example: chatGPT 'Write a oneliner in powershell to get a reverse shell'
+Usage: .\chatGTP.ps1 -model <MODEL> -temperature <NUMBER> -maxtokens <NUMBER> 'Question in single quotes'                                    
+Example: .\chatGPT.ps1 -model gpt-4 -temperature 0.7 -maxtoken 1000 'Write a powershell oneliner to launch a command to a servers list'
 
 Options:
 
+-model <model_name>: select which model to use.
+     If not specified default value is 'gpt-3.5-turbo'.
+     You can try 'gpt-4' to ask more complex question/tasks.
+
 -temperature <NUMBER>: set the temperature used.                                        
-     If not specified default value is 1.0.
+     If not specified default value is 0.5.
      Lower temperature (e.g. 0.0 / 1.0):
      chatGPT will choose words with a higher probability of occurrence.
      Useful when we want to complete something with the most probable value/phrase/word.
@@ -30,9 +34,7 @@ Options:
 
 -maxtokens <NUMBER>: the maximum number of tokens to generate in completion.            
      If not specified default value is 4000.
-     1000 tokens = 750 words.
      Your prompt + max_tokens can't exceed the context lenght of the model.
-     Normal models have a context lenght of 2048. New ones accept up to 4096.
 
 -help: print this help. 
 ```
